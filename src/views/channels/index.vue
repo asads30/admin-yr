@@ -24,11 +24,6 @@
           <span>{{ row.name }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Автор" width="100px" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.user_id }}</span>
-        </template>
-      </el-table-column>
       <el-table-column label="Зарегистрирован" width="180px" align="center">
         <template slot-scope="{row}">
           <span>{{ Date.parse(row.createdAt) | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
@@ -37,6 +32,13 @@
       <el-table-column label="Активность" width="180px" align="center">
         <template slot-scope="{row}">
           <span>{{ Date.parse(row.updatedAt) | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="Автор" width="120px" align="center">
+        <template slot-scope="{row}">
+          <el-button type="primary" size="mini" :user-id="row.user_id">
+            <i class="el-icon-arrow-right" />
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
