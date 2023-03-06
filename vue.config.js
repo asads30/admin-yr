@@ -30,7 +30,7 @@ module.exports = {
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
-    proxy: 'https://wpaka.site',
+    proxy: 'https://wpaka.site/',
     port: port,
     open: true,
     overlay: {
