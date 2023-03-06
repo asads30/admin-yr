@@ -3,7 +3,7 @@ import { Message } from 'element-ui'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: 'http://localhost:9527/admin', // url = base url + request url
+  baseURL: '/admin', // url = base url + request url
   withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout,
 })
