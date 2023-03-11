@@ -4,7 +4,7 @@
 
 <script>
 import echarts from 'echarts'
-require('echarts/theme/macarons')
+require('echarts/theme/macarons') // echarts theme
 import resize from './mixins/resize'
 
 export default {
@@ -64,7 +64,7 @@ export default {
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
         xAxis: {
-          data: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
           boundaryGap: false,
           axisTick: {
             show: false
@@ -90,11 +90,10 @@ export default {
           }
         },
         legend: {
-          data: ['пользователи', 'каналы', 'товары', 'платежи']
+          data: ['expected', 'actual']
         },
         series: [{
-          name: 'пользователи',
-          itemStyle: {
+          name: 'expected', itemStyle: {
             normal: {
               color: '#FF005A',
               lineStyle: {
@@ -110,47 +109,7 @@ export default {
           animationEasing: 'cubicInOut'
         },
         {
-          name: 'каналы',
-          smooth: true,
-          type: 'line',
-          itemStyle: {
-            normal: {
-              color: '#3888fa',
-              lineStyle: {
-                color: '#3888fa',
-                width: 2
-              },
-              areaStyle: {
-                color: '#f3f8ff'
-              }
-            }
-          },
-          data: actualData,
-          animationDuration: 2800,
-          animationEasing: 'quadraticOut'
-        },
-        {
-          name: 'товары',
-          smooth: true,
-          type: 'line',
-          itemStyle: {
-            normal: {
-              color: '#3888fa',
-              lineStyle: {
-                color: '#3888fa',
-                width: 2
-              },
-              areaStyle: {
-                color: '#f3f8ff'
-              }
-            }
-          },
-          data: actualData,
-          animationDuration: 2800,
-          animationEasing: 'quadraticOut'
-        },
-        {
-          name: 'платежи',
+          name: 'actual',
           smooth: true,
           type: 'line',
           itemStyle: {

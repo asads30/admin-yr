@@ -11,7 +11,8 @@ const state = {
   channelsCount: Cookies.get('channelsCount') ? Cookies.get('channelsCount') : 0,
   usersCount: Cookies.get('usersCount') ? Cookies.get('usersCount') : 0,
   paymentsCount: Cookies.get('paymentsCount') ? Cookies.get('paymentsCount') : 0,
-  productsCount: Cookies.get('productsCount') ? Cookies.get('productsCount') : 0
+  productsCount: Cookies.get('productsCount') ? Cookies.get('productsCount') : 0,
+  paymentsList: null
 }
 
 const mutations = {
@@ -36,10 +37,6 @@ const mutations = {
     state.size = size
     Cookies.set('size', size)
   },
-  FETCH_PAYMENTS: (state, payments) => {
-    state.payments = payments
-    Cookies.set('payments', payments)
-  },
   FETCH_USERS_COUNT: (state, usersCount) => {
     state.usersCount = usersCount
     Cookies.set('usersCount', usersCount)
@@ -55,6 +52,9 @@ const mutations = {
   FETCH_PRODUCTS_COUNT: (state, productsCount) => {
     state.productsCount = productsCount
     Cookies.set('productsCount', productsCount)
+  },
+  FETCH_PAYMENTS_LIST: (state, paymentsList) => {
+    state.paymentsList = paymentsList
   }
 }
 
@@ -109,6 +109,17 @@ const actions = {
       getProducts().then(response => {
         const data = response
         commit('FETCH_PRODUCTS_COUNT', data.totalProductCount)
+        resolve(data)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  fetchPaymentsList({ commit }) {
+    return new Promise((resolve, reject) => {
+      getPayments().then(response => {
+        const data = response
+        commit('FETCH_PAYMENTS_LIST', data.payments)
         resolve(data)
       }).catch(error => {
         reject(error)

@@ -1,16 +1,19 @@
 <template>
   <div class="dashboard-editor-container">
     <panel-group />
+    <transaction-table />
   </div>
 </template>
 
 <script>
 import PanelGroup from './components/PanelGroup'
+import TransactionTable from './components/TransactionTable'
 
 export default {
   name: 'DashboardAdmin',
   components: {
-    PanelGroup
+    PanelGroup,
+    TransactionTable
   }
 }
 </script>

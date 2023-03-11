@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="payments.slice(-10)" style="width: 100%;">
+  <el-table v-if="paymentsList" :data="paymentsList.slice(-10)" style="width: 100%;">
     <el-table-column label="ID заказа" width="100">
       <template slot-scope="scope">
         {{ scope.row.id }}
@@ -29,10 +29,14 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'Transaction',
-  props: {
-    Payments: Array
+  name: 'TransactionTable',
+  computed: {
+    ...mapGetters([
+      'paymentsList'
+    ])
   }
 }
 </script>

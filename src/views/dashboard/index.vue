@@ -34,6 +34,7 @@ export default {
       this.$store.dispatch('app/fetchUsersCount')
       this.$store.dispatch('app/fetchPaymentsCount')
       this.$store.dispatch('app/fetchProductsCount')
+      this.$store.dispatch('app/fetchPaymentsList')
     }
   }
 }
