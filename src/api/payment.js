@@ -7,3 +7,11 @@ export function fetchList(query) {
     params: query
   })
 }
+
+export function fetchPayouts(query) {
+  return request2({
+    url: '/paymentQuery/',
+    method: 'get',
+    params: query
+  })
+}

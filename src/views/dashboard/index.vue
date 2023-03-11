@@ -26,6 +26,15 @@ export default {
     if (!this.roles.includes('admin')) {
       this.currentRole = 'editorDashboard'
     }
+    this.fetchData()
+  },
+  methods: {
+    fetchData() {
+      this.$store.dispatch('app/fetchChannelsCount')
+      this.$store.dispatch('app/fetchUsersCount')
+      this.$store.dispatch('app/fetchPaymentsCount')
+      this.$store.dispatch('app/fetchProductsCount')
+    }
   }
 }
 </script>

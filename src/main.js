@@ -6,7 +6,7 @@ import 'normalize.css/normalize.css'
 
 import Element from 'element-ui'
 import './styles/element-variables.scss'
-import enLang from 'element-ui/lib/locale/lang/en'
+import ruLang from 'element-ui/lib/locale/lang/ru-RU'
 
 import '@/styles/index.scss'
 
@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === 'production') {
 
 Vue.use(Element, {
   size: Cookies.get('size') || 'medium',
-  locale: enLang
+  locale: ruLang
 })
 
 Object.keys(filters).forEach(key => {

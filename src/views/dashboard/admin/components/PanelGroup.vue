@@ -1,7 +1,7 @@
 <template>
   <el-row :gutter="40" class="panel-group">
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('newVisitis')">
+    <el-col v-if="usersCount" :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel">
         <div class="card-panel-icon-wrapper icon-people">
           <svg-icon icon-class="peoples" class-name="card-panel-icon" />
         </div>
@@ -9,12 +9,12 @@
           <div class="card-panel-text">
             Пользователей
           </div>
-          <count-to :start-val="0" :end-val="102400" :duration="2600" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="Number(usersCount)" :duration="1000" class="card-panel-num" />
         </div>
       </div>
     </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('messages')">
+    <el-col v-if="channelsCount" :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel">
         <div class="card-panel-icon-wrapper icon-message">
           <svg-icon icon-class="message" class-name="card-panel-icon" />
         </div>
@@ -22,33 +22,33 @@
           <div class="card-panel-text">
             Каналов
           </div>
-          <count-to :start-val="0" :end-val="81212" :duration="3000" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="Number(channelsCount)" :duration="1500" class="card-panel-num" />
         </div>
       </div>
     </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('purchases')">
-        <div class="card-panel-icon-wrapper icon-money">
-          <svg-icon icon-class="money" class-name="card-panel-icon" />
-        </div>
-        <div class="card-panel-description">
-          <div class="card-panel-text">
-            Товаров
-          </div>
-          <count-to :start-val="0" :end-val="9280" :duration="3200" class="card-panel-num" />
-        </div>
-      </div>
-    </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('shoppings')">
+    <el-col v-if="productsCount" :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel">
         <div class="card-panel-icon-wrapper icon-shopping">
           <svg-icon icon-class="shopping" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
+            Товаров
+          </div>
+          <count-to :start-val="0" :end-val="Number(productsCount)" :duration="2000" class="card-panel-num" />
+        </div>
+      </div>
+    </el-col>
+    <el-col v-if="paymentsCount" :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel">
+        <div class="card-panel-icon-wrapper icon-money">
+          <svg-icon icon-class="money" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text">
             Платежей
           </div>
-          <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="Number(paymentsCount)" :duration="2500" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -57,14 +57,37 @@
 
 <script>
 import CountTo from 'vue-count-to'
+import Cookies from 'js-cookie'
 
 export default {
+  name: 'PanelGroup',
   components: {
     CountTo
   },
-  methods: {
-    handleSetLineChartData(type) {
-      this.$emit('handleSetLineChartData', type)
+  computed: {
+    channelsCount() {
+      if (!Cookies.get('channelsCount')) {
+        return this.$store.state('app/channelsCount')
+      }
+      return Cookies.get('channelsCount')
+    },
+    usersCount() {
+      if (!Cookies.get('usersCount')) {
+        return this.$store.state('app/usersCount')
+      }
+      return Cookies.get('usersCount')
+    },
+    paymentsCount() {
+      if (!Cookies.get('paymentsCount')) {
+        return this.$store.state('app/paymentsCount')
+      }
+      return Cookies.get('paymentsCount')
+    },
+    productsCount() {
+      if (!Cookies.get('productsCount')) {
+        return this.$store.state('app/productsCount')
+      }
+      return Cookies.get('productsCount')
     }
   }
 }

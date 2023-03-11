@@ -106,6 +106,19 @@ export const asyncRoutes = [
     ]
   },
 
+  {
+    path: '/payouts',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/payouts/index'),
+        name: 'Payouts',
+        meta: { title: 'Вывод средств', icon: 'bug', affix: true }
+      }
+    ]
+  },
+
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
